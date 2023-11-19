@@ -1,0 +1,48 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+.content {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 450px;
+    height: 800px;
+    background-color: antiquewhite;
+    border-radius: 15px;
+    outline: solid 1px black; 
+}
+.displayNum {
+    background-color: aliceblue;
+    width: 350px;
+    height: 250px;
+    border-radius: 15px;
+    outline: solid 1px black; 
+}
+.btnContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+#dec, #clear, #delete {
+    width: 70px;
+    height: 50px;
+}
+#zero {
+    width: 105px;
+}
+.digit {
+    background-color: #FFA1DA;
+    width: 70px;
+    height: 50px;
+}
+.operator {
+    background-color: #AF42C1;
+    width: 70px;
+    height: 50px;
+}
