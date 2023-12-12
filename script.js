@@ -1,15 +1,18 @@
-const digits = document.querySelectorAll('.digit');
-const ops = document.querySelectorAll('.operator');
-const del = document.querySelector('#delete');
-const dec = document.querySelector('#decimal');
-const prevDisplay = document.querySelector('.prevDisplay');
-const currDisplay = document.querySelector('.currDisplay');
-
 let currentNum = "";
 let previousNum = "";
 let operator = "";
 
-const equal = document.querySelector('.equal');
+const digits = document.querySelectorAll('.digit');
+const ops = document.querySelectorAll('.operator');
+const del = document.querySelector('#delete');
+const prevDisplay = document.querySelector('.prevDisplay');
+const currDisplay = document.querySelector('.currDisplay');
+
+const dec = document.querySelector('#decimal');
+dec.addEventListener('click', () => {
+    addDecimal();
+});
+const equal = document.querySelector('#equal');
 equal.addEventListener('click', () => {
     calc();
 });
@@ -53,22 +56,37 @@ function calc() {
     
     if (operator === "+"){
         previousNum = previousNum + currentNum;
-        console.log("firstVal", currentNum, "secVal", previousNum);
     } else if (operator === "-"){
         previousNum = previousNum - currentNum;
     } else if (operator === "x"){
         previousNum = previousNum * currentNum;
     } else if (operator === "÷"){
+        if (currentNum <= 0){
+            previousNum = "Error";
+            displayResult();
+            return
+        }
         previousNum = previousNum / currentNum;
     }
+    previousNum = roundNum(previousNum);
     previousNum = previousNum.toString();
     displayResult();
+}
+
+function roundNum(num) {
+    return Math.round(num * 100) / 100;
 }
 
 function displayResult() {
     currDisplay.textContent = previousNum;
     prevDisplay.textContent = "";
-    operator="";
-    currentNum="";
+    operator = "";
+    currentNum = "";
 }
 
+function addDecimal() {
+    if (!currentNum.includes('.')) {
+        currentNum = currentNum + '.';
+        currDisplay.textContent = currentNum;
+    }
+}
