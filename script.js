@@ -4,9 +4,13 @@ let operator = "";
 
 const digits = document.querySelectorAll('.digit');
 const ops = document.querySelectorAll('.operator');
-const del = document.querySelector('#delete');
 const prevDisplay = document.querySelector('.prevDisplay');
 const currDisplay = document.querySelector('.currDisplay');
+
+const del = document.querySelector('#delete');
+del.addEventListener('click', () => {
+    delStr();
+});
 
 const dec = document.querySelector('#decimal');
 dec.addEventListener('click', () => {
@@ -58,6 +62,8 @@ function calc() {
         previousNum = previousNum + currentNum;
     } else if (operator === "-"){
         previousNum = previousNum - currentNum;
+    } else if (operator === "%"){
+        previousNum = previousNum % currentNum;
     } else if (operator === "x"){
         previousNum = previousNum * currentNum;
     } else if (operator === "÷"){
@@ -89,4 +95,9 @@ function addDecimal() {
         currentNum = currentNum + '.';
         currDisplay.textContent = currentNum;
     }
+}
+
+function delStr() {
+    currentNum = currentNum.slice(0, -1);
+    currDisplay.textContent = currentNum;
 }
